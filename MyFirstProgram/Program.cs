@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualBasic;
+using System;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Globalization;
+using System.IO;
 using System.Linq.Expressions;
 using System.Xml.Linq;
 
@@ -13,7 +15,8 @@ internal class Program
 
         Console.WriteLine("EXERCISE cases: 1 - 1-10: Name Profession, 2 - 1-15: Asking Multiple Inputs, 3 - 1-23: Tiny Calculator,\r\n" +
             "4 - 1-33: Echo, 5 - 1-40: Amount and Sum, 6 - 2-4: Comparison, 7 - 2-8: Numbers and Calculations, \r\n" +
-            "8 - 2-11: Print Until Number, 9 - 2-17: Sum, 10 - 2-20: Stars, 11 - 3-16: Remove Last Method, ");
+            "8 - 2-11: Print Until Number, 9 - 2-17: Sum, 10 - 2-20: Stars, 11 - 3-16: Remove Last Method, 12 - 3-21: Array in Stars, \r\n" +
+            "13 - 3-28: Last Part Split, 14 - 3-29: CSV Age. ");
         Console.WriteLine("Kies je case nummer: ");
 
         int userInput = Convert.ToInt32(Console.ReadLine());
@@ -71,6 +74,36 @@ internal class Program
                 lijst.Add("test4");
                 lijst.Add("test5");
                 removeLastMethod(lijst);
+                break;
+            case 12:
+                Console.WriteLine("hier worden alle stars uitgeprint op basis van nummers\r\n" +
+                    "14, 3, 5, 7, 2 zijn de nummers: ");
+                int[] theArray = {14, 3, 5, 7, 2};
+                printArrayInStars(theArray);
+                break;
+            case 13:
+                Console.WriteLine("zet geen spatie op het einde,\r\n" +
+                    "type hier je zin: ");
+                string word = ".";
+                while (word != "")
+                {
+                    word = Console.ReadLine();
+                    string[] inhoud = word.Split(' ');
+                    partSplit(inhoud);
+                }
+                break;
+            case 14:
+                Console.WriteLine("voeg namen en leeftijden toe");
+                string naamCsv = ".";
+                int ageCsv = 0;
+                while (naamCsv != "")
+                {
+                    Console.WriteLine("naam: ");
+                    naamCsv = Console.ReadLine();
+                    Console.WriteLine("leeftijd: ");
+                    ageCsv = Convert.ToInt32(Console.ReadLine());
+                    csvAge(naamCsv, ageCsv);
+                }
                 break;
 
         }
@@ -279,17 +312,59 @@ internal class Program
         }
     }
 
-    /*static void kerstBoom(int height)
-    { 
-        height =  height < 3 ? 3 : height;
+    public static void printArrayInStars(int[] array)
+    {
+        /*int set = 0;
+        int time = 0;
 
-        for (int i = 0; 1<= height; i++) 
+        foreach (int x in array)
+        { 
+            time++;
+            while(set < array.Length)
+            {
+                Console.WriteLine("*");
+
+                array[set++] = x;
+            }
+        }*/
+        foreach (int value in array)
         {
-
-            printchar('', height - i);
+            for (int i = 0; i < value; i++)
+            {
+                Console.Write("*");
+            }
             Console.WriteLine();
-
         }
-    }*/
+    }
+
+    /*static void kerstBoom(int height)
+   { 
+       height =  height < 3 ? 3 : height;
+
+       for (int i = 0; 1<= height; i++) 
+       {
+
+           printchar('', height - i);
+           Console.WriteLine();
+
+       }
+   }*/
+
+    public static void partSplit(string[] inhoud)
+    {
+            string lastElement = inhoud[inhoud.Length - 1];
+            Console.WriteLine("dit is het laaste word: -->" + lastElement);
+    }
+
+    public static void csvAge(string name, int age)
+    {
+
+        List<string> naamLijst = new List<string>();
+        List<int> ageLijst = new List<int>();
+
+        naamLijst.Add(name);
+        ageLijst.Add(age);
+
+    }
 
 }
