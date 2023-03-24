@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using MyFirstProgram;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
@@ -16,11 +17,12 @@ internal class Program
         Console.WriteLine("EXERCISE cases: 1 - 1-10: Name Profession, 2 - 1-15: Asking Multiple Inputs, 3 - 1-23: Tiny Calculator,\r\n" +
             "4 - 1-33: Echo, 5 - 1-40: Amount and Sum, 6 - 2-4: Comparison, 7 - 2-8: Numbers and Calculations, \r\n" +
             "8 - 2-11: Print Until Number, 9 - 2-17: Sum, 10 - 2-20: Stars, 11 - 3-16: Remove Last Method, 12 - 3-21: Array in Stars, \r\n" +
-            "13 - 3-28: Last Part Split, 14 - 3-29: CSV Age. ");
+            "13 - 3-28: Last Part Split, 14 - 3-29: CSV Age, 15 - test bench voor OOP part 4 ");
         Console.WriteLine("Kies je case nummer: ");
 
         int userInput = Convert.ToInt32(Console.ReadLine());
 
+        /* dit mag weg - anders heb je dubble print */
         Console.WriteLine(userInput);
 
         switch (userInput)
@@ -104,6 +106,14 @@ internal class Program
                     ageCsv = Convert.ToInt32(Console.ReadLine());
                     csvAge(naamCsv, ageCsv);
                 }
+                break;
+            case 15:
+                Console.WriteLine("voer een naam en leeftijd in");
+                Console.WriteLine("Naam: ");
+                string lNaam = Console.ReadLine();
+                Console.WriteLine("Leeftijd: ");
+                int lLeeftijd = Convert.ToInt32(Console.ReadLine());
+                liamPrint(lNaam, lLeeftijd);
                 break;
 
         }
@@ -367,4 +377,13 @@ internal class Program
 
     }
 
+    /**** Part 4 OOP ****/
+
+    //Person meneer = new Person("Liam", 21);
+
+    public static void liamPrint(string naam,int input)
+    {
+        Person meneer = new Person(naam, input);
+        meneer.PrintPerson();
+    }
 }
